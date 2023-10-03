@@ -1,45 +1,40 @@
 import React from 'react';
+import { Subfolder } from './Subfolder';
 
 export const Menu = () => (
     <nav>
         <ul>
             <li className="deroulant">
                 <a href="#">Tous</a>
-                <ul className="sous">
-                    <li>
-                        <a href="#">de 0 à 3 ans</a>
-                    </li>
-                    <li>
-                        <a href="#">de 3 à 6 ans</a>
-                    </li>
-                    <li>
-                        <a href="#">de 6 à 10 ans</a>
-                    </li>
-                    <li>
-                        <a href="#">au-delà de 10 ans</a>
-                    </li>
-                </ul>
+                <Subfolder />
             </li>
             <li>
                 <a href="#">Carte</a>
+                <Subfolder />
             </li>
             <li>
                 <a href="#">Stratégie</a>
+                <Subfolder />
             </li>
             <li>
                 <a href="#">Lettre</a>
+                <Subfolder />
             </li>
             <li>
                 <a href="#">Hasard</a>
+                <Subfolder />
             </li>
             <li>
                 <a href="#">Adresse</a>
+                <Subfolder />
             </li>
             <li>
                 <a href="#">Coopératif</a>
+                <Subfolder />
             </li>
             <li>
                 <a href="#">Ambiance</a>
+                <Subfolder />
             </li>
         </ul>
     </nav>
