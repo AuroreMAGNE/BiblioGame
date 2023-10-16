@@ -1,41 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Subfolder } from './Subfolder';
 
-export const Menu = () => (
-    <nav>
-        <ul>
-            <li className="deroulant">
-                <a href="#">Tous</a>
-                <Subfolder />
-            </li>
-            <li>
-                <a href="#">Carte</a>
-                <Subfolder />
-            </li>
-            <li>
-                <a href="#">Stratégie</a>
-                <Subfolder />
-            </li>
-            <li>
-                <a href="#">Lettre</a>
-                <Subfolder />
-            </li>
-            <li>
-                <a href="#">Hasard</a>
-                <Subfolder />
-            </li>
-            <li>
-                <a href="#">Adresse</a>
-                <Subfolder />
-            </li>
-            <li>
-                <a href="#">Coopératif</a>
-                <Subfolder />
-            </li>
-            <li>
-                <a href="#">Ambiance</a>
-                <Subfolder />
-            </li>
-        </ul>
-    </nav>
-);
+export const Menu = () => {
+    const formatCategory = (label, index) => (
+        <li className="deroulant" key={index}>
+            <a href="#">{label}</a>
+            <Subfolder />
+        </li>
+    );
+
+    const [categories, setCategories] = useState([formatCategory('Tous', 0)]);
+
+    axios
+        .get('http://localhost:4000/categories')
+        .then((result) => {
+            if (result.data)
+                setCategories([
+                    formatCategory('Tous', 0), // Valeur par défault
+
+                    // Formattage des données en retournée de l'API
+                    ...result.data.map((c, index) =>
+                        formatCategory(c.label, index + 1)
+                    ),
+                ]);
+        })
+        .catch((error) => console.log(error));
+
+    return (
+        <nav>
+            <ul>{...categories}</ul>
+        </nav>
+    );
+};

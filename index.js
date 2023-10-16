@@ -5,3 +5,4 @@ import { App } from './src/App';
 const domContainer = document.querySelector('#mainContent');
 const root = ReactDOM.createRoot(domContainer);
 root.render(createElement(App));
+
